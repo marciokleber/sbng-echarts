@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=sbng-echarts
+      - POSTGRES_PASSWORD=sbng-echarts
+      - POSTGRES_DB=sbng-echarts
+    volumes:
+      - ./src/main/resources/postgres:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+    networks:
+      - sbng-echarts
+networks:
+  sbng-echarts:
+    name: sbng-echarts
+    driver: bridge
